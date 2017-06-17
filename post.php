@@ -1,14 +1,14 @@
 <?php
 session_start();	
-$name = $_GET['name'];
-$email = $_GET['email'];
-$message = $_GET['message'];
-$subject = 'Quasar New Message, from ' . $name;
+$name = trim(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING));
+$email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
+$message = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING));
+$subject = 'Up Health - Nova mensagem, de ' . $name;
 if(strtolower($_REQUEST['code']) == strtolower($_SESSION['random_number']))
 {
-$TO = "wowthemesnet@gmail.com";
-$h = "From: " . $email;
-$content = "$name ($email) sent you the following message :\n\n$message";
+$TO = "fs.brunoferreira@gmail.com";
+$h = "De: " . $email;
+$content = "$name ($email) enviou a seguinte mensagem :\n\n$message";
 mail($TO, $subject, $content, $h);		
 	echo 1;		
 }	
